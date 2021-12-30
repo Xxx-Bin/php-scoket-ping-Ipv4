@@ -73,3 +73,10 @@ recive count
 #### sc
 send count
 
+
+## change from 
+[php-doc-note](https://www.php.net/manual/zh/function.socket-create.php#80775)
+
+## other
+[[update]php ping ipv4 by socket](https://bjun.tech/blog/xphp/120)
+
