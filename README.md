@@ -60,3 +60,16 @@ string(8) "No Error"
 
 ```
 
+## $ret
+### host
+ping domain 
+### ip
+ping domain 's ip
+### dns_ms
+Domain name resolution time
+### ping_ret
+#### rc
+recive count
+#### sc
+send count
+
