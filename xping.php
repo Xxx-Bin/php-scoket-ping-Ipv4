@@ -122,7 +122,10 @@ class xping {
             }
             $recv = '';
             $time_stop = microtime(1);
-            socket_recvfrom($sock, $recv, 64 + $this->datasize, 0, $host, $port);
+            socket_recvfrom($sock, $recv, 64 + $this->datasize, 0, $r_host, $r_port);
+            if($r_host!=$host){
+                continue;
+            }
             $recv = unpack('C*', $recv);
             if ($recv[10] !== 1) // ICMP proto = 1
             {
@@ -150,7 +153,7 @@ class xping {
         socket_close($sock);
         $ms = ($time_stop - $time_start) * 1000;
 
-        if ($ms <= 0) {
+        if ($ms <= 0 ||  $success==0) {
             $ms = -1;
         }
 
