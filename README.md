@@ -127,6 +127,29 @@ array(1) {
 - total_time_ms
 all ping spedn time , unit is ms
 
+#### doit
+##### desc 
+to ping
+##### argv
+- $host 
+singe host or ip ,like 127.0.1
+Multiple host or ip,like
+```
+// split "\n" or ";" or ";"
+127.0.0.1;127.0.0.2;baidu.com
+
+```
+- $i
+Number of pings per IP
+- timeoutms
+If it is set to 250 ms, Ping greater than 250 ms will be regarded as timeout
+- sleep_ms
+Interval time of each Ping
+- datasize
+ping package size
+
+
+
 ## xping
 ### demo
 ```php
