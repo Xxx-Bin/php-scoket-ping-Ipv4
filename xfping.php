@@ -187,7 +187,6 @@ class xfping {
             empty($this->debug) || var_dump(__FILE__.' line:'.__LINE__,implode(' ',$recv));
             if ($recv[10] === 1 && $recv[21] === 0) // ICMP proto = 1
             {
-                //dont check seq or ident , sometime is no change
                 $key  = $r_ip.'_'.$recv[25].$recv[26].'_'.$recv[27].$recv[28];
                 if(isset($this->ping_time_start[$key])){
                     $seq = $recv[27]*256+$recv[28];
