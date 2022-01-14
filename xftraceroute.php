@@ -137,7 +137,10 @@ class xftraceroute {
             $this->sock = socket_create(AF_INET, SOCK_RAW,  getprotobyname('icmp'));
             socket_set_nonblock($this->sock);
         }
+        //win osx
         socket_set_option($this->sock, getprotobyname('ip'), 4,$c);
+        // linux
+        socket_set_option($this->sock, getprotobyname('ip'), 2,$c);
         $this->ping_time_start[$key] = ['t'=>microtime(1),'k'=>$key,'ip'=>$ip,'ttl'=>$c];
         socket_sendto($this->sock, $packet, strlen($packet), 0, $ip, $port);
     }
@@ -187,8 +190,10 @@ class xftraceroute {
                     $this->ip_done_list[] = $r_ip;
                     $origin_ip = $r_ip;
                 }else{
+                    // get origin_ip from Original Data Datagram 
                     $origin_ip = implode('.',[$recv[$offest+17],$recv[$offest+18],$recv[$offest+19],$recv[$offest+20]]);
                 }
+                // origni_ip + indet +  Identifier + Sequence Number
                 $key  = $origin_ip.'_'.$recv[$offest+25].$recv[$offest+26].'_'.$recv[$offest+27].$recv[$offest+28];
                 if(isset($this->ping_time_start[$key])){
                     $seq = $recv[$offest+27]*256+$recv[$offest+28];
